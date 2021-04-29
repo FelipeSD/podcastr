@@ -28,6 +28,12 @@ type EpisodeProps = {
 
 export default function Episode({episode}: EpisodeProps){
     const router = useRouter();
+    
+    // se estiver em fallback (página acessada que não foi gerada automaticamente, com falbback como true)
+    if(router.isFallback){
+        return <p>Carregando</p>
+    }
+
     return (
         <div className={styles.episode}>
             <div className={styles.thumbnailContainer}>
@@ -65,8 +71,20 @@ export default function Episode({episode}: EpisodeProps){
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: [],
+        paths: [{
+            // deve passar os params para cada novo path
+            params: {
+                slug: 'a-importancia-da-contribuicao-em-open-source'
+            }
+        }],
         fallback: 'blocking'
+            // blocking: vai usar a requisição no lado do servidor next, caso uma página acessada
+            // não foi gerada de forma estática (incremental static regeneration)
+
+            // true: ao acessar o episódio eque não foi gerado estático irá buscar 
+            // o getStaticProps para o lado do client (incremental static regeneration)
+
+            // false: retorna página 404 caso a página não foi gerada de forma estática
     }
 }
 

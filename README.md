@@ -34,6 +34,8 @@ dangerouslySetInnetHtml
 ### Dia 4
 Toda rota que esteja usando geração estática (getStaticProps) e que tenha parametros dinamicos, deve implementar a função getStaticPaths.
 
+useRef para manipulação do audio HTML, referencia o elemento que queremos manipular.
+
 
 ´´´
 <div 
