@@ -6,6 +6,8 @@ tecnologias. Utilizando SSR (Server side rendering) e SSG (Static site generatio
 ### Dia 2
 Estilização com scss no next utilizando em forma de módulos. Nome dos arquivos deve conter *.module.scss.
 
+Configurar api utilizando json-server.
+
 A função getStaticProps irá gerar um SSG (site estático) de acordo com a propriedade revalidate (passado em segundos), 
 tudo que for acessado durante cada intervalo, a mesma página será entregue para os usuários.
 
@@ -20,7 +22,7 @@ Fazer a manipulação dos dados do server.json para que a página mostre no form
 Conheci uma propriedade interessante do css que insere reticências (...) automaticamente quando acontece um overflow
 ´´´
 overflow: hidden;
-text-overflow: ellipsis; // insere reticencias quando passa o overflow
+text-overflow: ellipsis;
 ´´´
 
 O Next trabalha com File System Rooting, significa que as rotas são feitas de acordo com os arquivos que existem em um diretório, que nesse caso é o pages. São os arquivos que formam a rota da aplicação. 
@@ -30,6 +32,12 @@ A tag Link oferecido pelo next tras o mesmo funcionamento de SPA, substituindo a
 
 Converter texto com tags html ser interpretado no react a renderizar como Html passando uma propriedade
 dangerouslySetInnetHtml
+´´´
+<div 
+    className={styles.description} 
+    dangerouslySetInnerHTML={{ __html: episode.description}} 
+/>
+´´´
 
 ### Dia 4
 Toda rota que esteja usando geração estática (getStaticProps) e que tenha parametros dinamicos, deve implementar a função getStaticPaths.
@@ -37,12 +45,16 @@ Toda rota que esteja usando geração estática (getStaticProps) e que tenha par
 useRef para manipulação do audio HTML, referencia o elemento que queremos manipular.
 
 
-´´´
-<div 
-    className={styles.description} 
-    dangerouslySetInnetHtml={{ __html: episode.description}} 
-/>
-´´´
+### Dia 5
+Definir title da página de forma dinâmica utilizando next
+
+Manipulação do component Slider em sintonia com a api Audio nativa do HTML
+
+###  Dicas para levar para o proximo nível
+1 - Aplicar responsividade
+2 - Desenvolver tema dark
+3 - Gerar PWA com o next
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
