@@ -75,16 +75,18 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) { // prop
 
           <table cellSpacing={0}>
             <thead>
-              <th></th>
-              <th>Podcast</th>
-              <th>Integrantes</th>
-              <th>Data</th>
-              <th>Duração</th>
-              <th></th>
+              <tr>
+                <th></th>
+                <th>Podcast</th>
+                <th>Integrantes</th>
+                <th>Data</th>
+                <th>Duração</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               {allEpisodes.map((episode, index) => (
-                <tr>
+                <tr key={episode.id}>
                   <td style={{width: 72}}>
                     <Image 
                       width={120}
@@ -126,13 +128,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) { // prop
 }
 
 export const getStaticProps: GetStaticProps = async() => { // é chamado pelo next antes de renderizar componente
-  const { data } =  await api.get('episodes', {
-    params: { 
-      _limit: 12,
-      _sort: 'published_at',
-      _order: 'desc'
-    }
-  });
+  const { data } =  await api.get('/episodes');
 
   const episodes = data.map(episode => {
     return {
